@@ -39,12 +39,12 @@ $di['router'] = function() use ($defaultModule, $modules, $di, $config) {
 	//     'action' => 'logout'
 	// ]);
 
-	// $router->addGet('/coba', [
-	//     'namespace' => 'Phalcon\Init\BackOffice\Controllers\Web',
-	// 	'module' => 'backoffice',
-	//     'controller' => 'Index',
-	//     'action' => 'index'
-	// ]);
+	$router->addGet('/', [
+	    'namespace' => 'Phalcon\Init\Dashboard\Controllers\Web',
+		'module' => 'dashboard',
+	    'controller' => 'dashboard',
+	    'action' => 'index'
+	]);
 
 	// /**
 	//  * Not Found Routing

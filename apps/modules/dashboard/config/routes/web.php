@@ -16,4 +16,10 @@ $router->addGet('/dashboard', [
     'action' => 'dashboard'
 ]);
 
+$router->addGet('/coba', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Dashboard',
+    'action' => 'coba'
+]);
 return $router;

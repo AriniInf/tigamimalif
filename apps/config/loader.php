@@ -10,7 +10,7 @@ $loader->registerNamespaces(array(
 	/**
 	 * Load SQL server db adapter namespace
 	 */
-	'Phalcon\Db'    => __DIR__ . '/../library/phalcon-sqlsrv/Phalcon/Db',
+	'Phalcon\Db'    => APP_PATH . '/lib/Phalcon/Db',
 	//'Phalcon\Db\Adapter\Pdo' => APP_PATH . '/lib/Phalcon/Db/Adapter/Pdo',
 	//'Phalcon\Db\Dialect' => APP_PATH . '/lib/Phalcon/Db/Dialect',
 	//'Phalcon\Db\Result' => APP_PATH . '/lib/Phalcon/Db/Result',

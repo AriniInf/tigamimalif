@@ -19,23 +19,29 @@ class DashboardController extends Controller
 
     public function indexAction()
     {
-        // $users = Users::find();
-
-        // $this->view->users = $users;
-        // $this->db->query("SELECT * FROM logs");
-
-        $this->view->pick('dashboard/index');
+        
     }
 
     public function registerAction()
     {
-        $this->view->pick('dashboard/register');
+        //$this->view->disable();
+        
     }
 
     public function dashboardAction(){
         
         $this->view->pick('dashboard/dashboard');
     }   
+
+    public function cobaAction(){
+        $db = $this->getDI()->get('db');
+
+        $sql = "Select * from users";
+
+        $result = $db->fetchOne($sql, \Phalcon\Db\Enum::FETCH_ASSOC);
+
+        echo var_dump($result);
+    } 
      // public function storeAction()
     // {
     //     // $user = new Users();

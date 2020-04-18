@@ -1,6 +1,5 @@
 <?php
 
-
 use Phalcon\Logger\Adapter\File as Logger;
 use Phalcon\Session\Adapter\Files as Session;
 use Phalcon\Session\Manager as Manager;
@@ -15,6 +14,7 @@ use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Session\Adapter\Files;
 use Phalcon\Events\Event;
 use Phalcon\Events\Manager as EventsManager;
+use MyApp\Listeners\Listener as Listener;
 
 $di['config'] = function() use ($config) {
 	return $config;
@@ -119,8 +119,38 @@ $di->set(
     }
 );
 
-use MyApp\Listeners\Listener as Listener;
-use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
+
+// $di->setShared('db', function(){
+//     $config = $this->getConfig();
+
+//     $class = '\Phalcon\Db\Adapter\Pdo\\' . $config->database->adapter;
+//     $params = [
+//         'host' => $config->database->host,
+//         'username' => $config->database->username,
+//         'password' => $config->database->password,
+//         'dbname' => $config->database->dbname,
+//         'port' => $config->database->port,
+//         'charset' => $config->database->charset
+//     ];
+//     if ($config->database->adapter == 'Postgresql' || $config->database->adapter == 'Sqlite'){
+//         unset($params['charset']);
+//     }
+//     return new $class($params);
+// });
+
+$di['db'] = function () use ($config) {
+
+    $dbAdapter = $config->database->adapter;
+
+    return new $dbAdapter([
+        "host" => $config->database->host,
+        "username" => $config->database->username,
+        "password" => $config->database->password,
+        "dbname" => $config->database->dbname,
+        "port" => $config->database->port,
+        "charset" => $config->database->charset
+    ]);
+};
 
 // $di['db'] = function () use ($config) {
 //     $eventsManager = new EventsManager();
