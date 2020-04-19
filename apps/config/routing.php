@@ -18,27 +18,6 @@ $di['router'] = function() use ($defaultModule, $modules, $di, $config) {
 
 
 
-	// $router->addPost('/post_register', [
-	//     'namespace' => 'Phalcon\Init\Dashboard\Controllers\Web',
-	// 	'module' => 'dashboard',
-	//     'controller' => 'Dashboard',
-	//     'action' => 'store'
-	// ]);
-
-	// $router->addPost('/login', [
-	//     'namespace' => 'Phalcon\Init\Dashboard\Controllers\Web',
-	// 	'module' => 'dashboard',
-	//     'controller' => 'Dashboard',
-	//     'action' => 'login'
-	// ]);
-
-	// $router->addPost('/logout', [
-	//     'namespace' => 'Phalcon\Init\Dashboard\Controllers\Web',
-	// 	'module' => 'dashboard',
-	//     'controller' => 'Dashboard',
-	//     'action' => 'logout'
-	// ]);
-
 	$router->addGet('/', [
 	    'namespace' => 'Phalcon\Init\Dashboard\Controllers\Web',
 		'module' => 'dashboard',

@@ -16,6 +16,7 @@ $loader->registerNamespaces(array(
 	//'Phalcon\Db\Result' => APP_PATH . '/lib/Phalcon/Db/Result',
 	//
 	'MyApp\Listeners' => APP_PATH . '/Listener'
+
 ));
 
 $loader->register();

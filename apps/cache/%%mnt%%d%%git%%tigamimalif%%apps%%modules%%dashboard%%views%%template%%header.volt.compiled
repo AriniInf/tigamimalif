@@ -88,16 +88,16 @@
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                             <button type="button" tabindex="0" class="dropdown-item">User Account</button>
                                             <div tabindex="-1" class="dropdown-divider"></div>
-                                            <button type="button" tabindex="0" class="dropdown-item">Logout</button>
+                                            <button onclick="window.location.href = '/logout'" type="button" tabindex="0" class="dropdown-item">Logout</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="widget-content-left  ml-3 header-user-info">
                                     <div class="widget-heading">
-                                        Alina Mclourd
+                                        <?= $this->session->get('auth')['username'] ?>
                                     </div>
                                     <div class="widget-subheading">
-                                        Administrator
+                                        Karyawan
                                     </div>
                                 </div>
                             </div>
