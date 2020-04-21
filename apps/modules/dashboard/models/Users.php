@@ -3,14 +3,14 @@
 namespace Phalcon\Init\Dashboard\Models;
 
 use Phalcon\Mvc\Model;
-//use Phalcon\Init\Dashboard\Models\Logs;
+
 
 class Users extends Model
 {
-	public function initialize()
-    {
-        $this->setSource('Users');
-    }
+	// public function initialize()
+    // {
+    //     $this->setSource('Users');
+    // }
     
     public $id;
     public $id_jabatan;
@@ -21,6 +21,7 @@ class Users extends Model
     public $alamat;
     public $notelp;
     public $password;
+    public $flag;
   
   
     // public function gen_uuid() {

@@ -8,14 +8,19 @@ use Phalcon\Init\Dashboard\Models\Users;
 use Phalcon\Init\Dashboard\Models\Jabatan;
 use Phalcon\Http\Request;
 use Phalcon\Events\Manager as EventsManager;
-// use Phalcon\Session\Exception;
-// use Phalcon\Session\Manager;
 
 class DashboardController extends Controller
 {
     
     public function indexAction()
     {
+        
+        $this->view->pick('dashboard/login');
+    }
+
+    
+
+    public function dashboardAction(){
         $db = $this->getDI()->get('db');
 
         $sql = "Select * from users";
@@ -23,13 +28,6 @@ class DashboardController extends Controller
         $result = $db->fetchOne($sql);
 
         echo var_dump($result);
-        $this->view->disable();
-    }
-
-    
-
-    public function dashboardAction(){
-        
         // $id = $this->session->get('id');
         $this->view->pick('dashboard/dashboard');
     }   
@@ -91,29 +89,6 @@ class DashboardController extends Controller
             var_dump('ga ada');
             $this->response->redirect('/');
         }
-        // $request = new Request();
-        // $user->username = $this->request->getPost('username');
-        // //$user = Users::findFirst("username='$username'");
-        // $user->pass = $this->request->getPost('password');
-        // $users = Users::find();
-        // $this->view->users = $users;
-        // if($user)
-        // {
-        //     if($user->password == $pass){
-        //         $this->session->set('auth',['username' => $user->username]);
-        //         //$this->flashSession->success('Anda telah login');
-        //         var_dump("masuk");
-        //     }
-        //     else{
-        //         var_dump('salah');
-        //        // $this->flashSession->error('Password anda salah');
-        //     }
-        // }
-        // else{
-        //     var_dump('username tidak ditemukan');
-        //     $this->flashSession->error('Email tidak ditemukan');
-        // }
-        // $this->response->redirect('/');
     }
 
     public function logoutAction()
@@ -123,18 +98,6 @@ class DashboardController extends Controller
         print_r('logout berhasil');
         $this->response->redirect('/');
         
-    }
-
-    public function jabatanAction(){
-
-    }
-
-    public function addJabatanAction(){
-
-        $jabatan = new Jabatan();
-        $jabatan->jabatan = $this->request->getPost('jabatan');
-        $jabatan->save();
-        $this->response->redirect('/');
     }
 
 }   

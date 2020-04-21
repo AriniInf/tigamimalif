@@ -63,4 +63,80 @@ $router->addGet('/logout', [
     'controller' => 'Dashboard',
     'action' => 'logout'
 ]);
+
+$router->addGet('/list-kategori', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Kategori',
+    'action' => 'listKategori'
+]);
+
+$router->addGet('/form-kategori', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Kategori',
+    'action' => 'formKategori'
+]);
+$router->addPost('/add-kategori', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Kategori',
+    'action' => 'addKategori'
+]);
+
+$router->addGet('/list-karyawan', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'listKaryawan'
+]);
+
+$router->addGet('/update-karyawan/{id}', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'updateKaryawan'
+]);
+
+$router->addPost('/edit-karyawan', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'editKaryawan'
+]);
+
+$router->addPost('/verifikasi-karyawan', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'verifikasiKaryawan'
+]);
+
+$router->addGet('/delete-karyawan/{id}', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'deleteKaryawan'
+]);
+
+$router->addGet('/form-produk', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Produk',
+    'action' => 'formProduk'
+]);
+
+$router->addGet('/list-produk/{id}', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Produk',
+    'action' => 'listProduk'
+]);
+
+$router->addPost('/add-produk/{id}', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Produk',
+    'action' => 'addProduk'
+]);
 return $router;

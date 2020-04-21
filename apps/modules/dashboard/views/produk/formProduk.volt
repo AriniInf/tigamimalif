@@ -9,27 +9,34 @@
 <body>
     <div class="container mt-5">
         <div class="text-center">
-            <div class="h2">Login</div>
-            <form action="{{ url('/postlogin') }}" method="POST">
+            <div class="h2">Kategori</div>
+            <form action="{{ url('/add-produk') }}" method="POST">
                 <div class="form-group row">
                     <div class="col-md-3 text-right">
-                        <label for="username">Username</label>
+                        <label for="kategori">Produk</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="username" name="username">
+                        <input type="text" class="form-control" id="produk" name="produk">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-3 text-right">
-                        <label for="password">Password</label>
+                        <label for="password">Kategori</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="password" class="form-control" id="password" name="password">
+                        <input type="text" class="form-control" id="kategori" name="kategori">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3 text-right">
+                        <label for="password">Stok</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="stok" name="stok">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-            <a href="/register">Register</a>
         </div>
     </div>
 </body>

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
     <div class="container mt-5">
         <div class="text-center">
-            <div class="h2">Register</div>
+            <div class="h2">Login</div>
             <form action="<?= $this->url->get('/postlogin') ?>" method="POST">
                 <div class="form-group row">
                     <div class="col-md-3 text-right">
@@ -27,8 +29,9 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-            <a href="/dashboard">Dashboard</a>
+            <a href="/register">Register</a>
         </div>
     </div>
 </body>
+
 </html>
