@@ -7,7 +7,7 @@ use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\View;
 use Phalcon\Url;
 use Phalcon\Escaper;
-use Phalcon\Flash\Direct as FlashDirect;
+use Phalcon\Flash\Direct;
 use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Events\Event;
 use Phalcon\Events\Manager as EventsManager;
@@ -95,10 +95,15 @@ $di->set(
     true
 );
 
+
 $di->set(
     'flash',
     function () {
-        $flash = new FlashDirect(
+        $escaper = new Escaper();
+        $flash = new Direct($escaper);
+        $flash->setAutomaticHtml(false);
+        $flash->setImplicitFlush(false);
+        $flash->setCssClasses(
             [
                 'error'   => 'alert alert-danger',
                 'success' => 'alert alert-success',
@@ -111,23 +116,23 @@ $di->set(
     }
 );
 
-$di->set(
-    'flashSession',
-    function () {
-        $flash = new FlashSession(
-            // [
-            //     'error'   => 'alert alert-danger',
-            //     'success' => 'alert alert-success',
-            //     'notice'  => 'alert alert-info',
-            //     'warning' => 'alert alert-warning',
-            // ]
-        );
+// $di->set(
+//     'flashSession',
+//     function () {
+//         $flash = new FlashSession(
+//             // [
+//             //     'error'   => 'alert alert-danger',
+//             //     'success' => 'alert alert-success',
+//             //     'notice'  => 'alert alert-info',
+//             //     'warning' => 'alert alert-warning',
+//             // ]
+//         );
 
-        $flash->setAutoescape(false);
+//         $flash->setAutoescape(false);
         
-        return $flash;
-    }
-);
+//         return $flash;
+//     }
+// );
 
 
 $di['db'] = function () use ($config) {

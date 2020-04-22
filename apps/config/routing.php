@@ -21,7 +21,7 @@ $di['router'] = function() use ($defaultModule, $modules, $di, $config) {
 	$router->addGet('/', [
 	    'namespace' => 'Phalcon\Init\Dashboard\Controllers\Web',
 		'module' => 'dashboard',
-	    'controller' => 'dashboard',
+	    'controller' => 'user',
 	    'action' => 'index'
 	]);
 

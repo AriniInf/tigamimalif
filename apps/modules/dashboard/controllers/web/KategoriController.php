@@ -17,11 +17,10 @@ class KategoriController extends Controller
         $kategoris = Kategori::find();
       
         $this->view->kategoris = $kategoris;
-       // $this->view->pick('dashboard/listKategori');
     }
     public function formKategoriAction()
     {
-        //$this->view->pick('dashboard/formKategori') ;       
+
     }
     public function addKategoriAction(){
 
@@ -32,7 +31,4 @@ class KategoriController extends Controller
         $this->response->redirect('/');
     }
 
-    public function editKategoti(){
-
-    }
 }

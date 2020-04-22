@@ -5,15 +5,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Analytics Dashboard - This is an example dashboard created using build-in elements and components.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
 
-    <link href="../assets/css/main.css" rel="stylesheet"></head>
+    <link href="../assets/css/main.css" rel="stylesheet">
+</head>
+
 <body>
-     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
                 <div class="logo-src"></div>
@@ -42,9 +44,9 @@
                         <span class="btn-icon-wrapper">
                             <i class="fa fa-ellipsis-v fa-w-6"></i>
                         </span>
-                    </button>
+                </button>
                 </span>
-            </div>    
+            </div>
             <div class="app-header__content">
                 <div class="app-header-left">
                     <div class="search-wrapper">
@@ -82,7 +84,7 @@
                                 <div class="widget-content-left">
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                            <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">
+                                            <img width="42" class="rounded-circle" src="../assets/images/avatars/1.jpg" alt="">
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
@@ -102,10 +104,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>        
+                    </div>
                 </div>
             </div>
-        </div>        <div class="ui-theme-settings">
+        </div>
+        <div class="ui-theme-settings">
             <button type="button" id="TooltipDemo" class="btn-open-options btn btn-warning">
                 <i class="fa fa-cog fa-w-16 fa-spin fa-2x"></i>
             </button>
@@ -383,133 +386,126 @@
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
         <div class="app-main">
-                <div class="app-sidebar sidebar-shadow">
-                    <div class="app-header__logo">
-                        <div class="logo-src"></div>
-                        <div class="header__pane ml-auto">
-                            <div>
-                                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+            <div class="app-sidebar sidebar-shadow">
+                <div class="app-header__logo">
+                    <div class="logo-src"></div>
+                    <div class="header__pane ml-auto">
+                        <div>
+                            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
                                     <span class="hamburger-box">
                                         <span class="hamburger-inner"></span>
                                     </span>
                                 </button>
-                            </div>
                         </div>
                     </div>
-                    <div class="app-header__mobile-menu">
-                        <div>
-                            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                </div>
+                <div class="app-header__mobile-menu">
+                    <div>
+                        <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
                                 <span class="hamburger-box">
                                     <span class="hamburger-inner"></span>
                                 </span>
                             </button>
-                        </div>
                     </div>
-                    <div class="app-header__menu">
-                        <span>
+                </div>
+                <div class="app-header__menu">
+                    <span>
                             <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
                                 <span class="btn-icon-wrapper">
                                     <i class="fa fa-ellipsis-v fa-w-6"></i>
                                 </span>
-                            </button>
-                        </span>
-                    </div>    <div class="scrollbar-sidebar">
-                        <div class="app-sidebar__inner">
-                            <ul class="vertical-nav-menu">
-                                <li class="app-sidebar__heading">Dashboards</li>
-                                <li>
-                                    <a href="index.html" class="mm-active">
-                                        <i class="metismenu-icon pe-7s-rocket"></i>
-                                        Dashboard
-                                    </a>
-                                </li>
-                                <li class="app-sidebar__heading">Product</li>
-                                <li>
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-diamond"></i>
-                                        Stok Barang
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="elements-buttons-standard.html">
-                                                <i class="metismenu-icon"></i>
-                                                Barang masuk
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="elements-dropdowns.html">
-                                                <i class="metismenu-icon">
-                                                </i>
-                                                Barang keluar
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-car"></i>
-                                        Produk
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="components-tabs.html">
-                                                <i class="metismenu-icon">
+                    </button>
+                    </span>
+                </div>
+                <div class="scrollbar-sidebar">
+                    <div class="app-sidebar__inner">
+                        <ul class="vertical-nav-menu">
+                            <li class="app-sidebar__heading">Dashboards</li>
+                            <li>
+                                <a href="index.html" class="mm-active">
+                                    <i class="metismenu-icon pe-7s-rocket"></i> Dashboard
+                                </a>
+                            </li>
+                            <li class="app-sidebar__heading">Product</li>
+                            <li>
+                                <a href="#">
+                                    <i class="metismenu-icon pe-7s-diamond"></i> Stok Barang
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="elements-buttons-standard.html">
+                                            <i class="metismenu-icon"></i> Barang masuk
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="elements-dropdowns.html">
+                                            <i class="metismenu-icon">
+                                                </i> Barang keluar
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="metismenu-icon pe-7s-car"></i> Produk
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="components-tabs.html">
+                                            <i class="metismenu-icon">
                                                 </i>Produk baru
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-display2"></i>
-                                        Kategori
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="components-tabs.html">
-                                                <i class="metismenu-icon">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="metismenu-icon pe-7s-display2"></i> Kategori
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="components-tabs.html">
+                                            <i class="metismenu-icon">
                                                 </i>List Kategori
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="app-sidebar__heading">Karyawan</li>
-                                <li>
-                                    <a href="dashboard-boxes.html">
-                                        <i class="metismenu-icon pe-7s-display2"></i>
-                                        List Karyawan
-                                    </a>
-                                </li>   
-            
-                                <li class="app-sidebar__heading">Charts</li>
-                                <li>
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-graph2">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="app-sidebar__heading">Karyawan</li>
+                            <li>
+                                <a href="dashboard-boxes.html">
+                                    <i class="metismenu-icon pe-7s-display2"></i> List Karyawan
+                                </a>
+                            </li>
+
+                            <li class="app-sidebar__heading">Charts</li>
+                            <li>
+                                <a href="#">
+                                    <i class="metismenu-icon pe-7s-graph2">
                                         </i>Transaksi
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="components-tabs.html">
-                                                <i class="metismenu-icon">
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="components-tabs.html">
+                                            <i class="metismenu-icon">
                                                 </i>Pembelian
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="components-tabs.html">
-                                                <i class="metismenu-icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components-tabs.html">
+                                            <i class="metismenu-icon">
                                                 </i>Penjualan
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
-                </div>   
-    
+                </div>
+            </div>
