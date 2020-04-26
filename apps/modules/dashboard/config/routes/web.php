@@ -9,7 +9,7 @@ $router->addGet('/register', [
     'action' => 'register'
 ]);
 
-$router->addPost('/store-register', [
+$router->addPost('/register', [
     'namespace' => $namespace,
     'module' => 'dashboard',
     'controller' => 'User',
@@ -145,6 +145,35 @@ $router->addGet('/admin/delete-produk/{id}', [
     'action' => 'deleteProduk'
 ]);
 
+$router->addGet('/karyawan/list-produk', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'listProduk'
+]);
+
+$router->addPost('/karyawan/add-produk', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'addProduk'
+]);
+
+
+$router->addPost('/karyawan/edit-produk', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'editProduk'
+]);
+
+$router->addGet('/karyawan/delete-produk/{id}', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'deleteProduk'
+]);
+
 $router->addGet('/admin/list-pembelian', [
     'namespace' => $namespace,
     'module' => 'dashboard',
@@ -201,24 +230,31 @@ $router->addGet('/admin/lihat-profil', [
     'action' => 'profil'
 ]);
 
-$router->addGet('/admin/coba', [
+$router->addGet('/karyawan/edit-profile', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'Admin',
-    'action' => 'coba'
+    'controller' => 'Karyawan',
+    'action' => 'editProfile'
 ]);
 
-$router->addGet('/admin/data-tables', [
+$router->addGet('/karyawan/lihat-profil', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'Index',
-    'action' => 'dataTables'
+    'controller' => 'Karyawan',
+    'action' => 'profil'
 ]);
 
 $router->addPost('/admin/update-profile', [
     'namespace' => $namespace,
     'module' => 'dashboard',
     'controller' => 'Admin',
+    'action' => 'updateProfile'
+]);
+
+$router->addPost('/karyawan/update-profile', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
     'action' => 'updateProfile'
 ]);
 

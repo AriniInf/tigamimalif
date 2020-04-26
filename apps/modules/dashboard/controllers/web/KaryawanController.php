@@ -12,6 +12,15 @@ use Phalcon\Mvc\Model\Query;
 
 class KaryawanController extends Controller
 {
+    public function initialize()
+    {
+        $auth = $this->session->has('auth');
+
+        if (! $auth) {
+            $this->response->redirect('/');
+        }
+    }
+
     public function dashboardAction(){
 
         $id = $this->session->get('id');
@@ -25,6 +34,36 @@ class KaryawanController extends Controller
         ]); 
         // $this->view->disable();
         
+    }
+
+    public function profilAction(){
+        $id = $this->session->get('auth')['id'];
+        $user = $this->db->query("SELECT * FROM Users WHERE id='$id'")->fetchAll();
+        $this->view->setVars([
+            'user' => $user,
+        ]); 
+    }
+
+    public function editProfileAction(){
+        $id = $this->session->get('auth')['id'];
+        $user = $this->db->query("SELECT * FROM Users WHERE id='$id'")->fetchAll();
+        $this->view->setVars([
+            'user' => $user,
+        ]); 
+    }
+
+    public function updateProfileAction(){
+        $id = $this->request->getPost('id');
+        $user = Users::findFirst("id='$id'");
+        $user->nama = $this->request->getPost('nama');
+        $user->usia = $this->request->getPost('usia');
+        $user->alamat = $this->request->getPost('alamat');
+        $user->email = $this->request->getPost('email');
+        if($user->update()){
+            $this->flashSession->success("Profile telah berhasil diupdate"); 
+            $this->response->redirect('/karyawan/lihat-profil'); 
+        }
+       
     }
     
     

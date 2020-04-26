@@ -1,4 +1,4 @@
-{% extends "template/mainadmin.volt" %} {% block content %}
+{% extends "template/mainkaryawan.volt" %} {% block content %}
 
 <div class="content-header">
     <div class="container-fluid">
@@ -8,8 +8,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-                    <li class="breadcrumb-item active">Edit Profil</li>
+                    <li class="breadcrumb-item"><a href="/karyawan/dashboard">Home</a></li>
+                    <li class="breadcrumb-item active">User Profile</li>
                 </ol>
             </div>
         </div>
@@ -17,7 +17,7 @@
     </div>
     <!-- /.container-fluid -->
 </div>
-<div class="col-md-6">
+<div class="col-md-12">
     <div class="card">
         <div class="card-header p-2">
             <ul class="nav nav-pills">
@@ -29,34 +29,34 @@
             <div class="tab-content">
                 <div class="active tab-pane" id="activity">
                     <div class="tab-pane" id="settings">
-                        {% for ad in admin %}
+                        {% for usr in user %}
                         <form class="form-horizontal" action="/admin/update-profile" method="post">
                             <div class="form-group row">
                                 <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="nama" id="nama" value="{{ad['nama']}}" required>
+                                    <input type="text" class="form-control" name="nama" id="nama" value="{{usr['nama']}}" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Usia</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="usia" id="usia" value="{{ad['usia']}}" required>
+                                    <input type="text" class="form-control" name="usia" id="usia" value="{{usr['usia']}}" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputName2" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="email" id="email" value="{{ad['email']}}" required>
+                                    <input type="text" class="form-control" name="email" id="email" value="{{usr['email']}}" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputExperience" class="col-sm-2 col-form-label">Alamat</label>
                                 <div class="col-sm-10">
-                                    <input name="alamat" class="form-control" id="alamat" value="{{ad['alamat']}}" required>
+                                    <input name="alamat" class="form-control" id="alamat" value="{{usr['alamat']}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="hidden" name="id" id="id" value="{{ad['id']}}">
+                                <input type="hidden" name="id" id="id" value="{{usr['id']}}">
                             </div>
                             <div class="form-group row">
                                 <div class="offset-sm-2 col-sm-10">

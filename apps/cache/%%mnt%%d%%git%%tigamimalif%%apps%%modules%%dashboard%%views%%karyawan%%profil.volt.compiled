@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Tiga Mim Alif</title>
+    <title>TigaMimAlif</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -41,7 +41,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <div class="dropdown-divider"></div>
-                        <a href="/admin/edit-profile" class="dropdown-item ">Edit Profile
+                        <a href="/karyawan/edit-profile" class="dropdown-item ">Edit Profile
                         </a>
                         <div class="dropdown-divider "></div>
                         <a href="/logout " class="dropdown-item ">Logout
@@ -65,7 +65,7 @@
                         <img src="../assets/dist/img/avatar5.png" class="img-circle elevation-2 " alt="User Image ">
                     </div>
                     <div class="info ">
-                        <a href="/admin/lihat-profil" class="d-block "> <?= $this->session->get('auth')['username'] ?></a>
+                        <a href="/karyawan/lihat-profil" class="d-block "> <?= $this->session->get('auth')['username'] ?></a>
                     </div>
                 </div>
 
@@ -73,10 +73,10 @@
                 <nav class="mt-2 ">
                     <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview " role="menu " data-accordion="false ">
                         <li class="nav-item has-treeview menu-open ">
-                            <?php if ($this->session->get('auth')['id_jabatan'] == 1) { ?>
-                            <a href="/admin/dashboard " class="nav-link ">
-                            <?php } elseif ($this->session->get('auth')['id_jabatan'] == 2) { ?>
-                                <a href="/karyawan/dashboard " class="nav-link "></a> <?php } ?>
+                            <?php if ($this->session->get('auth')['id_jabatan'] == 2) { ?>
+                            <a href="/karyawan/dashboard" class="nav-link ">
+                            <?php } elseif ($this->session->get('auth')['id_jabatan'] == 1) { ?>
+                                <a href="/admin/dashboard" class="nav-link "></a> <?php } ?>
                             <i class="nav-icon fas fa-tachometer-alt "></i>
                             <p>
                                 DASHBOARD
@@ -84,7 +84,7 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview ">
-                            <a href="/admin/list-produk" class="nav-link ">
+                            <a href="/karyawan/list-produk" class="nav-link ">
                                 <i class="nav-icon fas fa-copy "></i>
                                 <p>
                                     PRODUK
@@ -92,33 +92,24 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview ">
-                            <a href="/admin/list-kategori" class="nav-link ">
+                            <a href="/karyawan/list-kategori" class="nav-link ">
                                 <i class="nav-icon fas fa-chart-pie "></i>
                                 <p>
                                     KATEGORI
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-header">KARYAWAN</li>
                         <li class="nav-item has-treeview ">
-                            <a href="/admin/list-karyawan" class="nav-link ">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="/karyawan/list-karyawan" class="nav-link ">
+                                <i class="nav-icon fas fa-chart-pie "></i>
                                 <p>
-                                    Karyawan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview ">
-                            <a href="/admin/list-belum-karyawan" class="nav-link ">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    Belum Karyawan
+                                    KARYAWAN
                                 </p>
                             </a>
                         </li>
                         <li class="nav-header">TRANSAKSI</li>
                         <li class="nav-item has-treeview ">
-                            <a href="/admin/list-pembelian" class="nav-link ">
+                            <a href="/karyawan/list-pembelian" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
                                     Pembelian
@@ -126,7 +117,7 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview ">
-                            <a href="/admin/list-penjualan" class="nav-link ">
+                            <a href="/karyawan/list-penjualan" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
                                     Penjualan
@@ -147,92 +138,113 @@
                 <div class="container-fluid ">
                     <!-- Small boxes (Stat box) -->
                     
-<!-- Content Header (Page header) -->
-<div class="content-header">
+<section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Dashboard</h1>
+                <h1>Profile</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">User Profile</li>
                 </ol>
             </div>
         </div>
-        <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
-</div>
-<div class="row">
-    <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-info">
-            <div class="inner">
-                <?php foreach ($produk as $pro) { ?>
-                <h3><?= $pro['produk'] ?></h3>
-                <?php } ?>
-                <p>Jumlah Produk</p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-bag"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-success">
-            <div class="inner">
-                <?php foreach ($banyak as $ter) { ?>
-                <h3><?= $ter['produk'] ?> = <?= $ter['jumlah'] ?></h3>
-                <?php } ?>
-                <p>Penjualan terbanyak</p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-warning">
-            <div class="inner">
-                <?php foreach ($karyawan as $kar) { ?>
-                <h3><?= $kar['karyawan'] ?></h3>
-                <?php } ?>
-                <p>Jumlah Karyawan </p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-danger">
-            <div class="inner">
-                <?php foreach ($banyak as $ter) { ?>
-                <h3><?= $ter['produk'] ?> = <?= $ter['jual'] ?>x transaksi</h3>
-                <?php } ?>
+</section>
 
-                <p>Produk terlaris</p>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle" src="../assets/dist/img/avatar5.png" alt="User profile picture">
+                        </div>
+
+                        <?php foreach ($user as $usr) { ?>
+                        <h3 class="profile-username text-center"><?= $usr['username'] ?></h3>
+
+                        <p class="text-muted text-center">Karyawan</p>
+
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Followers</b> <a class="float-right">1,322</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Following</b> <a class="float-right">543</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Friends</b> <a class="float-right">13,287</a>
+                            </li>
+                        </ul>
+
+                        <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <!-- About Me Box -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">About Me</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <strong><i class="fas fa-book mr-1"></i> Nama</strong>
+
+                        <p class="text-muted"><?= $usr['nama'] ?>
+                        </p>
+
+                        <hr>
+
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat</strong>
+
+                        <p class="text-muted"><?= $usr['alamat'] ?></p>
+
+                        <hr>
+
+                        <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+
+                        <p class="text-muted">
+                            <span class="tag tag-danger">UI Design</span>
+                            <span class="tag tag-success">Coding</span>
+                            <span class="tag tag-info">Javascript</span>
+                            <span class="tag tag-warning">PHP</span>
+                            <span class="tag tag-primary">SQL</span>
+                        </p>
+                        <hr>
+                        <strong><i class="fas fa-pencil-alt mr-1"></i> Email</strong>
+                        <p class="text-muted"><?= $usr['email'] ?></p>
+                        <hr>
+                        <strong><i class="fas fa-pencil-alt mr-1"></i> Usia</strong>
+                        <p class="text-muted"><?= $usr['usia'] ?></p>
+                        <hr>
+
+                        <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+
+                        <p class="text-muted">Single wkwkwkwkwwkwk</p>
+                    </div>
+                    <?php } ?>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
             </div>
-            <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <!-- /.nav-tabs-custom -->
         </div>
+        <!-- /.col -->
     </div>
-    <!-- ./col -->
-</div>
-<!-- /.row -->
+    <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
 
                 </div>
                 <!-- /.container-fluid -->

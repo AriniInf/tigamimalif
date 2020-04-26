@@ -23,11 +23,16 @@
                     <div class="signin-image ">
                         <figure><img src="../assets/login/images/3 Mim Alif Transparan.png " alt="sing up image "></figure>
                         <a href="/" class="signup-image-link ">already a member</a>
-                    </div>
+                        <div style="color: red;">
+                            <p>
+                                {{message}}
+                            </p>
+                        </div>
 
+                    </div>
                     <div class="signin-form ">
                         <h2 class="form-title ">Register</h2>
-                        <form method="POST" class="data-form" action="/store-register">
+                        <form method="POST" class="data-form" action="/register">
                             <div class="form-group ">
                                 <label for="username "><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="username" id="username" placeholder="Username" required/>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Tiga Mim Alif</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -233,7 +233,7 @@
                     <td><?= $beli['tanggal'] ?></td>
                     <td><?= $beli['jumlah'] ?></td>
                     <td>
-                        <button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#edit-data<?= $beli['id'] ?>"><i class="fas fa-pencil-alt">
+                        <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#edit-data<?= $beli['id'] ?>"><i class="fas fa-pencil-alt">
                         </i>Edit</button>
 
                         <div class="modal fade" id="edit-data<?= $beli['id'] ?>">

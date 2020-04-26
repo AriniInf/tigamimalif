@@ -22,6 +22,7 @@ class AdminController extends Controller
         if (! $auth) {
             $this->response->redirect('/');
         }
+        
     }
 
     public function dashboardAction(){
@@ -36,10 +37,6 @@ class AdminController extends Controller
         ]); 
 
     }       // $this->view->disable();
-
-    public function cobaAction(){
-        
-    }
 
     public function profilAction(){
         $id = $this->session->get('auth')['id'];

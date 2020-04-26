@@ -23,10 +23,11 @@
                     <div class="signin-image">
                         <figure><img src="../assets/login/images/3 Mim Alif Transparan.png" alt="sing up image"></figure>
                         <a href="/register" class="signup-image-link">Create an account</a>
-                        <div style="color: yellow;"></div>
-                        <p>
-                            <?php echo $this->flashSession->output() ?>
-                        </p>
+                        <div style="color: yellow;">
+                            <p>
+                                <?php echo $this->flashSession->output() ?>
+                            </p>
+                        </div>
                     </div>
 
                     <div class="signin-form">
