@@ -62,67 +62,80 @@
     <div class="card-body">
         <table id="example1" class="table table-bordered table-striped">
             <thead>
-                <th>No</th>
-                <th>Produk</th>
-                <th>Tanggal</th>
-                <th>Stok</th>
-                <th>Aksi</th>
+                <tr>
+                    <th>No</th>
+                    <th>Produk</th>
+                    <th>Tanggal</th>
+                    <th>Stok</th>
+                    <th>Aksi</th>
+                </tr>
             </thead>
-            <?php $no = 1;?>{% for beli in penjualan %}
             <tbody>
-                <td>
-                    <?php echo $no++ ?>
-                </td>
-                <td>{{beli['produk']}}</td>
-                <td>{{beli['tanggal']}}</td>
-                <td>{{beli['jumlah']}}</td>
-                <td>
-                    <button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#edit-data{{beli['id']}}">Edit</button>
-                    <div class="modal fade" id="edit-data{{beli['id']}}">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Update Penjualan</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
+                <?php $no = 1;?>{% for beli in penjualan %}
+                <tr>
+                    <td>
+                        <?php echo $no++ ?>
+                    </td>
+                    <td>{{beli['produk']}}</td>
+                    <td>{{beli['tanggal']}}</td>
+                    <td>{{beli['jumlah']}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#edit-data{{beli['id']}}">Edit</button>
+                        <div class="modal fade" id="edit-data{{beli['id']}}">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Update Penjualan</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                    </div>
+                                    <form class="form-horizontal" action="/admin/edit-penjualan" method="post" enctype="multipart/form-data" role="form">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <div class="col-lg">
+                                                    <input type="hidden" class="form-control" id="id" name="id" value="{{beli['id']}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg">
+                                                    <input type="hidden" class="form-control" id="id_produk" name="id_produk" value="{{beli['id_produk']}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-sm-2 control-label">Tanggal</label>
+                                                <div class="col-lg">
+                                                    <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{beli['tanggal']}}" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-sm-2 control-label">Jumlah</label>
+                                                <div class="col-lg">
+                                                    <input type="text" class="form-control" id="jumlah" name="jumlah" value="{{beli['jumlah']}}" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-info" type="submit"> Simpan</button>
+                                            <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <form class="form-horizontal" action="/admin/edit-penjualan" method="post" enctype="multipart/form-data" role="form">
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <div class="col-lg">
-                                                <input type="hidden" class="form-control" id="id" name="id" value="{{beli['id']}}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-lg">
-                                                <input type="hidden" class="form-control" id="id_produk" name="id_produk" value="{{beli['id_produk']}}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 col-sm-2 control-label">Tanggal</label>
-                                            <div class="col-lg">
-                                                <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{beli['tanggal']}}" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 col-sm-2 control-label">Jumlah</label>
-                                            <div class="col-lg">
-                                                <input type="text" class="form-control" id="jumlah" name="jumlah" value="{{beli['jumlah']}}" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-info" type="submit"> Simpan</button>
-                                        <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
-                                    </div>
-                                </form>
                             </div>
                         </div>
-                    </div>
-                </td>
+                    </td>
+                </tr>
+                {% endfor %}
             </tbody>
-            {%endfor%}
+            <tfoot>
+                <tr>
+                    <th>No</th>
+                    <th>Produk</th>
+                    <th>Tanggal</th>
+                    <th>Stok</th>
+                    <th>Aksi</th>
+                </tr>
+            </tfoot>
         </table>
     </div>
     <!-- /.card-body -->

@@ -32,10 +32,11 @@ class UserController extends Controller
         $user->flag = '0';
         $nama = Users::findFirst("username = '$user->username'");
         if($nama){
-            echo "username sudah digunakan";
+            $this->flashSession->error("username sudah digunakan");
         }
         else{
             $user->save();
+            $this->flashSession->error("Anda telah berhasil mendaftar tunggu verifikasi dari admin");
             $this->response->redirect('/');
         }        
     }
@@ -52,7 +53,7 @@ class UserController extends Controller
         if ($user) {
             if($user->flag==0){
                 $this->response->redirect('/');
-                echo "anda belum diverifikasi";
+                $this->flashSession->error("Akun anda belum diverifikasi oleh admin");
             }
             else{
                 if ($this->security->checkHash($password, $user->password)) {
@@ -73,13 +74,13 @@ class UserController extends Controller
                 }
                 else{
                     $this->security->hash(rand());
-                    var_dump('salah');
                     $this->response->redirect('/');
+                    $this->flashSession->error("Silahkan cek Username dan Password anda apakah sudah benar");   
                 }
             }
         }
         else{
-            var_dump('ga ada');
+            $this->flashSession->error("Akun tidak ada"); 
             $this->response->redirect('/');
         }
     }
@@ -87,10 +88,7 @@ class UserController extends Controller
     public function logoutAction()
     {
         $this->session->destroy();
-        // $this->flashSession->success('Anda telah logout');
-        print_r('logout berhasil');
         $this->response->redirect('/');
-        
     }
 }
 

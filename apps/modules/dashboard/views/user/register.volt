@@ -21,7 +21,7 @@
             <div class="container ">
                 <div class="signin-content ">
                     <div class="signin-image ">
-                        <figure><img src="../assets/login/images/signin-image.jpg " alt="sing up image "></figure>
+                        <figure><img src="../assets/login/images/3 Mim Alif Transparan.png " alt="sing up image "></figure>
                         <a href="/" class="signup-image-link ">already a member</a>
                     </div>
 
@@ -54,12 +54,14 @@
                                 <label for="password"><i class="zmdi zmdi-lock "></i></label>
                                 <input type="password" name="password" id="password" placeholder="Password" required/>
                             </div>
+                            <p id='message'></p>
                             <div class="form-group ">
+
                                 <label for="password"><i class="zmdi zmdi-lock-outline "></i></label>
-                                <input type="password" name="password" id="password" placeholder="Repeat your password" required/>
+                                <input type="password" name="confirm_password" id="confirm_password" placeholder="Repeat your password" required/>
                             </div>
                             <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Register" />
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Register" disabled="true" />
                             </div>
                         </form>
                     </div>
@@ -70,6 +72,18 @@
     <!-- JS -->
     <script src="../assets/login/vendor/jquery/jquery.min.js "></script>
     <script src="../assets/login/js/main.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $('#confirm_password').on('keyup', function() {
+            if ($('#password').val() == $('#confirm_password').val()) {
+                $('#message').html('Matching').css('color', 'green');
+                $('#signin').prop('disabled', false);
+            } else {
+                $('#signin').prop('disabled', true);
+                $('#message').html('Not Matching').css('color', 'red');
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -5,6 +5,9 @@
             <div class="col-sm-6">
                 <h1 class="m-0 text-dark">List Karyawan</h1>
             </div>
+            <div class="col-sm-7" style="color: blue;">
+                <?php echo $this->flashSession->output() ?>
+            </div>
         </div>
         <!-- /.row -->
     </div>
@@ -18,37 +21,46 @@
     <div class="card-body">
         <table id="example1" class="table table-bordered table-striped">
             <thead>
-                <th>No</th>
-                <th>Username</th>
-                <th>Nama</th>
-                <th>Usia</th>
-                <th>Email</th>
-                <th>Alamat</th>
-                <th>Flag</th>
-                <th colspan="2">Aksi</th>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Usia</th>
+                    <th>Email</th>
+                    <th>Alamat</th>
+                    <th>Aksi</th>
+                </tr>
             </thead>
-            <?php $no = 1; foreach ($karyawan as $y) { ?>
             <tbody>
-                <td>
-                    <?php echo $no++ ?>
-                </td>
-                <td>{{y.username}}</td>
-                <td>{{ y.nama }}</td>
-                <td>{{ y.usia }}</td>
-                <td>{{ y.email }}</td>
-                <td>{{ y.alamat }}</td>
-                <td>{{ y.flag }}</td>
-                <td>
-                    <form action="/admin/verifikasi-karyawan" method="post">
-                        <input type="hidden" name="id" value={{y.id}}>
-                        <input type="submit" class="btn btn-info btn-sm" onclick="return validateDialog();" value="validate">
-                    </form>
-                </td>
-                <td>
-                    <a type="button" class="btn btn-danger btn-sm" href='/admin/delete-karyawan/{{y.id}}' onclick="return deleteDialog();">Hapus</a>
-                </td>
+                <?php $no=1 ?>{% for kar in karyawan %}
+                <tr>
+                    <td>
+                        <?php echo $no++ ?>
+                    </td>
+                    <td>{{kar.nama}}</td>
+                    <td>{{kar.usia}}</td>
+                    <td>{{kar.email}}</td>
+                    <td>{{kar.alamat}}</td>
+                    <td>
+                        <form action="/admin/verifikasi-karyawan" method="post">
+                            <input type="hidden" name="id" value={{kar.id}}>
+                            <input type="submit" class="btn btn-info btn-md" onclick="return validateDialog();" value="validate">
+                        </form>
+                        <a type="button" class="btn btn-danger btn-md" href='/admin/delete-karyawan/{{kar.id}}' onclick="return deleteDialog();"><i class="fas fa-trash">
+                        </i> Hapus</a>
+                    </td>
+                </tr>
+                {% endfor %}
             </tbody>
-            <?php }?>
+            <tfoot>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Usia</th>
+                    <th>Email</th>
+                    <th>Alamat</th>
+                    <th>Aksi</th>
+                </tr>
+            </tfoot>
         </table>
     </div>
     <!-- /.card-body -->

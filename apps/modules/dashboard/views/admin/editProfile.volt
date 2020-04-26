@@ -1,32 +1,83 @@
-<html>
-<h1>Arini</h1>
-{% for ad in admin %}
-<div class="home-content">
-    <label>Edit Profil</label>
-    <form class="data-form" action="/admin/update-profile" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="nama">Nama</label><br>
-            <input type="text" name="nama" id="nama" value="{{ad['nama']}}" required>
-        </div>
-        <div class="form-group">
-            <label for="usia">Usia</label><br>
-            <input type="text" name="usia" id="usia" value="{{ad['usia']}}" required>
-        </div>
-        <div class="form-group">
-            <label for="alamat">Alamat</label><br>
-            <input type="text" name="alamat" id="alamat" value="{{ad['alamat']}}" required>
-        </div>
-        <div class="form-group">
-            <label for="alamat">Email</label><br>
-            <input type="text" name="email" id="email" value="{{ad['email']}}" required>
-        </div>
-        <div class="form-group">
-            <input type="hidden" name="id" id="id" value="{{ad['id']}}">
-        </div>
+{% extends "template/mainadmin.volt" %} {% block content %}
 
-        <input class="log-btn" type="submit" value="Jawab">
-    </form>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Edit Profile</h1>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
 </div>
-{% endfor %}
-
-</html>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header p-2">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Edit Profil</a></li>
+            </ul>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="active tab-pane" id="activity">
+                    <div class="tab-pane" id="settings">
+                        {% for ad in admin %}
+                        <form class="form-horizontal">
+                            <div class="form-group row">
+                                <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="nama" id="nama" value="{{ad['nama']}}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Usia</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="usia" id="usia" value="{{ad['usia']}}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputName2" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="email" id="email" value="{{ad['email']}}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputExperience" class="col-sm-2 col-form-label">Alamat</label>
+                                <div class="col-sm-10">
+                                    <input name="alamat" class="form-control" id="alamat" value="{{ad['alamat']}}" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="id" id="id" value="{{ad['id']}}">
+                            </div>
+                            <div class="form-group row">
+                                <div class="offset-sm-2 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                        <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="offset-sm-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- /.card-body -->
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+{% endblock %}

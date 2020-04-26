@@ -1,25 +1,19 @@
 <?php
 
 use Phalcon\Logger\Adapter\File as Logger;
+use Phalcon\Session\Manager as Manager;
 use Phalcon\Http\Response\Cookies;
 use Phalcon\Security;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\View;
 use Phalcon\Url;
 use Phalcon\Escaper;
-use Phalcon\Flash\Direct;
+use Phalcon\Flash\Direct as FlashDirect;
 use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Events\Event;
 use Phalcon\Events\Manager as EventsManager;
 use MyApp\Listeners\Listener as Listener;
-use Phalcon\Session\Exception;
-use Phalcon\Session\Manager;
 use Phalcon\Session\Adapter\Stream;
-
-$di['config'] = function() use ($config) {
-	return $config;
-};
-
 
 $di->setShared('session',function () {
         $session = new Manager( );
@@ -37,6 +31,31 @@ $di->setShared('session',function () {
         return $session;
     }
 );
+
+// $di->set(
+//     'flashSession',
+//     function () {
+        
+//         $session = new Manager();
+//         $files = new Stream(
+//             [
+//                 'savePath' => '/mnt/e/git/youmatter/session',
+//             ]
+//         );
+//         // $session->setHandler($files);
+
+//         $escaper = new Escaper();
+//         $flash   = new FlashSession($escaper, $session);
+
+//         return $flash;
+//     }
+// );
+
+
+$di['config'] = function() use ($config) {
+	return $config;
+};
+
 
 $di['dispatcher'] = function() use ($di, $defaultModule) {
 
@@ -95,13 +114,11 @@ $di->set(
     true
 );
 
-
 $di->set(
     'flash',
     function () {
         $escaper = new Escaper();
-        $flash = new Direct($escaper);
-        $flash->setAutomaticHtml(false);
+        $flash = new FlashDirect($escaper);
         $flash->setImplicitFlush(false);
         $flash->setCssClasses(
             [
@@ -116,16 +133,18 @@ $di->set(
     }
 );
 
+
+
 // $di->set(
 //     'flashSession',
 //     function () {
 //         $flash = new FlashSession(
-//             // [
-//             //     'error'   => 'alert alert-danger',
-//             //     'success' => 'alert alert-success',
-//             //     'notice'  => 'alert alert-info',
-//             //     'warning' => 'alert alert-warning',
-//             // ]
+//             [
+//                 'error'   => 'alert alert-danger',
+//                 'success' => 'alert alert-success',
+//                 'notice'  => 'alert alert-info',
+//                 'warning' => 'alert alert-warning',
+//             ]
 //         );
 
 //         $flash->setAutoescape(false);
@@ -133,6 +152,7 @@ $di->set(
 //         return $flash;
 //     }
 // );
+
 
 
 $di['db'] = function () use ($config) {
@@ -182,27 +202,27 @@ $di['db'] = function () use ($config) {
     //     new Listener()
     // );
 
-$eventsManager = new EventsManager();
+// $eventsManager = new EventsManager();
 
-$eventsManager->collectResponses(true);
+// $eventsManager->collectResponses(true);
 
-$eventsManager->attach(
-    'custom:pertama',
-    function (Event $event, $component, $data) {
-        return 'Dari Event Manager Custom ' . $data . ' <br>' ;
-    }
-);
+// $eventsManager->attach(
+//     'custom:pertama',
+//     function (Event $event, $component, $data) {
+//         return 'Dari Event Manager Custom ' . $data . ' <br>' ;
+//     }
+// );
 
-$eventsManager->attach(
-    'custom:pertama',
-    function () {
-        return 'Dari Event Manager Custom Tanpa Data' . '<br>';
-    }
-);
+// $eventsManager->attach(
+//     'custom:pertama',
+//     function () {
+//         return 'Dari Event Manager Custom Tanpa Data' . '<br>';
+//     }
+// );
 
-$eventsManager->fire('custom:pertama', $this, 'Dengan Data');
+// $eventsManager->fire('custom:pertama', $this, 'Dengan Data');
 
-//print_r($eventsManager->getResponses());
+// print_r($eventsManager->getResponses());
 
 
 

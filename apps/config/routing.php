@@ -25,16 +25,17 @@ $di['router'] = function() use ($defaultModule, $modules, $di, $config) {
 	    'action' => 'index'
 	]);
 
-	// /**
-	//  * Not Found Routing
-	//  */
-	// $router->notFound(
-	// 	[
-	// 		'namespace' => 'Phalcon\Init\Common\Controllers',
-	// 		'controller' => 'base',
-	// 		'action'     => 'route404',
-	// 	]
-	// );
+	/**
+	 * Not Found Routing
+	 */
+	$router->notFound(
+		[
+			'namespace' => 'Phalcon\Init\Dashboard\Controllers\Web',
+			'module' => 'dashboard',
+			'controller' => 'index',
+			'action'     => 'route404',
+		]
+	);
 
 	/**
 	 * Module Routing

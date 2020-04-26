@@ -7,6 +7,7 @@ use Phalcon\Mvc\Dispatcher;
 use Phalcon\Init\Dashboard\Models\Users;
 use Phalcon\Init\Dashboard\Models\Produk;
 use Phalcon\Init\Dashboard\Models\Kategori;
+use Phalcon\Init\Dashboard\Models\Transaksi;
 use Phalcon\Http\Request;
 use Phalcon\Events\Manager as EventsManager;
 use Phalcon\Mvc\Model\Query;
@@ -14,12 +15,42 @@ use Phalcon\Mvc\Model\Query;
 
 class AdminController extends Controller
 {
-    public function dashboardAction(){
+    public function initialize()
+    {
+        $auth = $this->session->has('auth');
 
-        $id = $this->session->get('id');
+        if (! $auth) {
+            $this->response->redirect('/');
+        }
     }
 
-    public function editProfileAction($id){
+    public function dashboardAction(){
+        $id = $this->session->get('id');
+        $karyawan = $this->db->query(" SELECT COUNT(id) as karyawan from Users where id_jabatan = 2 and flag = 1")->fetchAll();
+        $produk = $this->db->query("SELECT COUNT(id) as produk from Produk")->fetchAll();
+        $banyak = $this->db->query("SELECT TOP 1 produk, count(id_produk) as jual, sum(jumlah) as jumlah from Transaksi join Produk ON produk.id = id_produk  where flag=1 group by produk order by jumlah DESC")->fetchAll();
+        $this->view->setVars([
+            'karyawan' => $karyawan,
+            'produk' => $produk,
+            'banyak' => $banyak,
+        ]); 
+
+    }       // $this->view->disable();
+
+    public function cobaAction(){
+        
+    }
+
+    public function profilAction(){
+        $id = $this->session->get('auth')['id'];
+        $admin = $this->db->query("SELECT * FROM Users WHERE id='$id'")->fetchAll();
+        $this->view->setVars([
+            'admin' => $admin,
+        ]); 
+    }
+
+    public function editProfileAction(){
+        $id = $this->session->get('auth')['id'];
         $admin = $this->db->query("SELECT * FROM Users WHERE id='$id'")->fetchAll();
         $this->view->setVars([
             'admin' => $admin,
@@ -33,7 +64,11 @@ class AdminController extends Controller
         $admin->usia = $this->request->getPost('usia');
         $admin->alamat = $this->request->getPost('alamat');
         $admin->email = $this->request->getPost('email');
-        $admin->update();
+        if($admin->update()){
+            $this->flashSession->success("Profile telah berhasil diupdate"); 
+            $this->response->redirect('/admin/lihat-profil'); 
+        }
+       
     }
 
     public function listKaryawanAction(){
@@ -56,9 +91,10 @@ class AdminController extends Controller
         $karyawan->nama = $this->request->getPost('nama');
         $karyawan->usia = $this->request->getPost('usia');
         $karyawan->alamat = $this->request->getPost('alamat');
-        $karyawan->update();
-        $this->response->redirect('/admin/list-karyawan');
-
+        if($karyawan->update()){
+            $this->flashSession->success("Data karyawan telah berhasil diedit");  
+            $this->response->redirect('/admin/list-karyawan');
+        }
     }
 
     public function updateKaryawanAction($id){
@@ -70,11 +106,13 @@ class AdminController extends Controller
         $karyawan = Users::findFirst($this->request->getPost('id'));
         $karyawan->flag = 1;
         $karyawan->update();
+        $this->flashSession->success('karyawan berhasil diverifikasi');
         $this->response->redirect('/admin/list-karyawan');
     }
 
     public function deleteKaryawanAction($id){
         $this->db->query("delete from Users where id='".$id."'");
+        $this->flashSession->success('Karyawan berhasil dihapus');
         $this->response->redirect('/admin/list-karyawan');
 
     }
@@ -99,12 +137,11 @@ class AdminController extends Controller
         $data->produk = $this->request->getPost('produk');
         $data->stok = $this->request->getPost('stok');
         if($data->save()){
-            $this->flash->success("Produk berhasil ditambahkan");
+            $this->flashSession->success('Produk berhasil ditambahkan');
             $this->response->redirect('/admin/list-produk');
         }
     }
         
-
     public function updateProdukAction($id){
         $produk = Produk::findFirst("id='$id'");
         $this->view->produk = $produk;
@@ -112,6 +149,7 @@ class AdminController extends Controller
 
     public function deleteProdukAction($id){
         $this->db->query("delete from Produk where id='".$id."'");
+        $this->flashSession->success('Produk berhasil dihapus');
         $this->response->redirect('/admin/list-produk');
 
     }
@@ -121,8 +159,10 @@ class AdminController extends Controller
         $produk->id_kategori = $this->request->getPost('id_kategori');
         $produk->produk = $this->request->getPost('produk');
         $produk->stok = $this->request->getPost('stok');
-        $produk->update();
-        $this->response->redirect('/admin/list-produk');
+        if($produk->update()){
+            $this->flashSession->success("Produk berhasil diedit"); 
+            $this->response->redirect('/admin/list-produk');
+        }     
     }
 
     public function listKategoriAction(){
@@ -140,7 +180,119 @@ class AdminController extends Controller
         $data = new Kategori();
         $data->kategori = $this->request->getPost('kategori');
         $data->deskripsi = $this->request->getPost('deskripsi');
-        $data->save();
-        $this->response->redirect('/admin/list-kategori');
+        if($data->save()){
+            $this->flashSession->success("Kategori berhasil ditambahkan");  
+            $this->response->redirect('/admin/list-kategori');
+        }
+        
+    }
+
+    public function listPembelianAction(){
+        $produk = Produk::find();
+        $this->view->produk = $produk;
+        $pembelian = $this->db->query('SELECT Transaksi.id, id_produk, produk, jumlah, tanggal FROM Produk join Transaksi ON id_produk = Produk.id where flag = 0')->fetchAll();
+        $this->view->setVars([
+            'pembelian' => $pembelian,
+        ]);
+    }
+
+    public function listPenjualanAction(){
+        $produk = Produk::find();
+        $this->view->produk = $produk;
+        $penjualan = $this->db->query('SELECT Transaksi.id, id_produk, produk, jumlah, tanggal FROM Produk join Transaksi ON id_produk = Produk.id where flag = 1')->fetchAll();
+        $this->view->setVars([
+            'penjualan' => $penjualan,
+        ]);
+    }
+
+    public function addPembelianAction(){
+        $pembelian = new Transaksi();
+        $pembelian->id_produk = $this->request->getPost('id_produk');
+        $pembelian->jumlah = $this->request->getPost('jumlah');
+        $pembelian->tanggal = $this->request->getPost('tanggal');
+        $pembelian->flag = 0;
+        if($pembelian->save()){
+            $id = $pembelian->id_produk;
+            $produk = Produk::findFirst("id='$id'");
+            $produk->stok = $produk->stok +$pembelian->jumlah;
+            
+            $produk->update();  
+            $this->flashSession->success("Pembelian berhasil ditambahkan");          
+            $this->response->redirect('/admin/list-pembelian');
+        }
+        else{
+            $this->response->redirect('/admin/list-pembelian');
+        }
+    }
+
+    public function editPembelianAction(){
+        $id = $this->request->getPost('id');
+        $beli = Transaksi::findFirst("id='$id'");
+        $stoksblm = $beli->jumlah;
+        $beli->id_produk = $this->request->getPost('id_produk');
+        $beli->jumlah = $this->request->getPost('jumlah');
+        $beli->tanggal = $this->request->getPost('tanggal');
+        if($beli->update()){
+            $idpro = $beli->id_produk;
+            $produk = Produk::findFirst("id='$idpro'");
+            $produk->stok = $beli->jumlah - $stoksblm + $produk->stok;
+            var_dump($produk->stok);
+            $produk->update();
+            $this->flashSession->success("Pembelian berhasil diedit"); 
+            $this->response->redirect('/admin/list-pembelian');
+        }
+        else{
+            $this->response->redirect('/admin/list-pembelian');
+        }
+    }
+
+    public function addPenjualanAction(){
+        $penjualan = new Transaksi();
+        $penjualan->id_produk = $this->request->getPost('id_produk');
+        $penjualan->jumlah = $this->request->getPost('jumlah');
+        $penjualan->tanggal = $this->request->getPost('tanggal');
+        $penjualan->flag = 1;
+        $beli = Produk::findFirst("id='$penjualan->id_produk'");
+        if($beli->stok - $penjualan->jumlah < 0 ){
+            $this->flashSession->success("Stok Produk habis"); 
+            $this->response->redirect('/admin/list-penjualan');
+        }
+        else{
+            if($penjualan->save()){
+                $beli->stok = $beli->stok - $penjualan->jumlah;
+                $beli->update();
+                $this->flashSession->success("Penjualan berhasil ditambahkan"); 
+                $this->response->redirect('/admin/list-penjualan');
+            }
+            else{
+                $this->response->redirect('/admin/list-pembelian');
+            }
+        }
+    }
+
+    public function editPenjualanAction(){
+        $id = $this->request->getPost('id');
+        $penjualan = Transaksi::findFirst("id='$id'");
+        $stoksblm = $penjualan->jumlah;
+        $penjualan->id_produk = $this->request->getPost('id_produk');
+        $penjualan->jumlah = $this->request->getPost('jumlah');
+        $penjualan->tanggal = $this->request->getPost('tanggal');
+        $idpro = $penjualan->id_produk;
+        $produk = Produk::findFirst("id='$idpro'");
+        $produk->stok = $stoksblm + $produk->stok - $penjualan->jumlah;
+        if($produk->stok < 0){
+            $this->flashSession->success("Stok Produk habis"); 
+            $this->response->redirect('/admin/list-penjualan');
+        }
+        else{
+            if($penjualan->update()){
+                $produk->update();
+                $this->flashSession->success("Penjualan berhasil diedit"); 
+                $this->response->redirect('/admin/list-penjualan');
+            }
+            else{
+                $this->response->redirect('/admin/list-penjualan');
+            }
+        }
     }
 }

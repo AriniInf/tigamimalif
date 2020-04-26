@@ -148,50 +148,71 @@ $router->addGet('/admin/delete-produk/{id}', [
 $router->addGet('/admin/list-pembelian', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'Transaksi',
+    'controller' => 'Admin',
     'action' => 'listPembelian'
 ]);
 
 $router->addPost('/admin/add-pembelian', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'Transaksi',
+    'controller' => 'Admin',
     'action' => 'addPembelian'
 ]);
 
 $router->addPost('/admin/edit-pembelian', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'Transaksi',
+    'controller' => 'Admin',
     'action' => 'editPembelian'
 ]);
 
 $router->addGet('/admin/list-penjualan', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'Transaksi',
+    'controller' => 'Admin',
     'action' => 'listPenjualan'
 ]);
 
 $router->addPost('/admin/add-penjualan', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'Transaksi',
+    'controller' => 'Admin',
     'action' => 'addPenjualan'
 ]);
 
 $router->addPost('/admin/edit-penjualan', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'Transaksi',
+    'controller' => 'Admin',
     'action' => 'editPenjualan'
 ]);
 
-$router->addGet('/admin/edit-profile/{id}', [
+$router->addGet('/admin/edit-profile', [
     'namespace' => $namespace,
     'module' => 'dashboard',
     'controller' => 'Admin',
     'action' => 'editProfile'
+]);
+
+$router->addGet('/admin/lihat-profil', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Admin',
+    'action' => 'profil'
+]);
+
+$router->addGet('/admin/coba', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Admin',
+    'action' => 'coba'
+]);
+
+$router->addGet('/admin/data-tables', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Index',
+    'action' => 'dataTables'
 ]);
 
 $router->addPost('/admin/update-profile', [
