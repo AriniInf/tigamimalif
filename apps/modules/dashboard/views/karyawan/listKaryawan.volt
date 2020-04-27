@@ -1,8 +1,8 @@
-{% extends "template/mainadmin.volt" %} {% block content %}
+{% extends "template/mainkaryawan.volt" %} {% block content %}
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
-            <div class="col-sm-6">
+            <div class="col-sm-5">
                 <h1 class="m-0 text-dark">List Karyawan</h1>
             </div>
             <div class="col-sm-7" style="color: blue;">
@@ -29,11 +29,10 @@
                     <th>Alamat</th>
                     <th>Skill</th>
                     <th>Notes</th>
-                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <?php $no=1 ?>{% for kar in karyawan %}
+                <?php $no = 1 ?>{% for kar in karyawan %}
                 <tr>
                     <td>
                         <?php echo $no++ ?>
@@ -44,16 +43,8 @@
                     <td>{{kar.alamat}}</td>
                     <td>{{kar.skill}}</td>
                     <td>{{kar.note}}</td>
-                    <td>
-                        <form action="/admin/verifikasi-karyawan" method="post">
-                            <input type="hidden" name="id" value={{kar.id}}>
-                            <input type="submit" class="btn btn-info btn-md" onclick="return validateDialog();" value="validate">
-                        </form>
-                        <a type="button" class="btn btn-danger btn-md" href='/admin/delete-karyawan/{{kar.id}}' onclick="return deleteDialog();"><i class="fas fa-trash">
-                        </i> Hapus</a>
-                    </td>
-                </tr>
-                {% endfor %}
+
+                    {% endfor %}
             </tbody>
             <tfoot>
                 <tr>
@@ -64,22 +55,13 @@
                     <th>Alamat</th>
                     <th>Skill</th>
                     <th>Notes</th>
-                    <th>Aksi</th>
                 </tr>
             </tfoot>
         </table>
+
     </div>
     <!-- /.card-body -->
 </div>
 
 </body>
-<script>
-    function deleteDialog() {
-        return confirm("Are you sure you want to delete this record?")
-    }
-
-    function validateDialog() {
-        return confirm("Are you sure you want to validate this record?")
-    }
-</script>
 {% endblock %}

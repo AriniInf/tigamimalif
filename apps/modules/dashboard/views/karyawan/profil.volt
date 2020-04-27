@@ -75,11 +75,7 @@
                         <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
 
                         <p class="text-muted">
-                            <span class="tag tag-danger">UI Design</span>
-                            <span class="tag tag-success">Coding</span>
-                            <span class="tag tag-info">Javascript</span>
-                            <span class="tag tag-warning">PHP</span>
-                            <span class="tag tag-primary">SQL</span>
+                            {{usr['skill']}}
                         </p>
                         <hr>
                         <strong><i class="fas fa-pencil-alt mr-1"></i> Email</strong>
@@ -91,7 +87,7 @@
 
                         <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
 
-                        <p class="text-muted">Single wkwkwkwkwwkwk</p>
+                        <p class="text-muted">{{usr['note']}}</p>
                     </div>
                     {% endfor %}
                     <!-- /.card-body -->

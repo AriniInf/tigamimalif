@@ -87,12 +87,40 @@ $router->addPost('/admin/add-kategori', [
     'action' => 'addKategori'
 ]);
 
+$router->addGet('/karyawan/list-kategori', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'listKategori'
+]);
+
+$router->addGet('/karyawan/form-kategori', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'formKategori'
+]);
+$router->addPost('/karyawan/add-kategori', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'addKategori'
+]);
+
 $router->addGet('/admin/list-karyawan', [
     'namespace' => $namespace,
     'module' => 'dashboard',
     'controller' => 'Admin',
     'action' => 'listKaryawan'
 ]);
+
+$router->addGet('/karyawan/list-karyawan', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'listKaryawan'
+]);
+
 
 $router->addGet('/admin/list-belum-karyawan', [
     'namespace' => $namespace,
@@ -195,6 +223,27 @@ $router->addPost('/admin/edit-pembelian', [
     'action' => 'editPembelian'
 ]);
 
+$router->addGet('/karyawan/list-pembelian', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'listPembelian'
+]);
+
+$router->addPost('/karyawan/add-pembelian', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'addPembelian'
+]);
+
+$router->addPost('/karyawan/edit-pembelian', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'editPembelian'
+]);
+
 $router->addGet('/admin/list-penjualan', [
     'namespace' => $namespace,
     'module' => 'dashboard',
@@ -213,6 +262,28 @@ $router->addPost('/admin/edit-penjualan', [
     'namespace' => $namespace,
     'module' => 'dashboard',
     'controller' => 'Admin',
+    'action' => 'editPenjualan'
+]);
+
+
+$router->addGet('/karyawan/list-penjualan', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'listPenjualan'
+]);
+
+$router->addPost('/karyawan/add-penjualan', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
+    'action' => 'addPenjualan'
+]);
+
+$router->addPost('/karyawan/edit-penjualan', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'Karyawan',
     'action' => 'editPenjualan'
 ]);
 

@@ -61,11 +61,12 @@ class AdminController extends Controller
         $admin->usia = $this->request->getPost('usia');
         $admin->alamat = $this->request->getPost('alamat');
         $admin->email = $this->request->getPost('email');
+        $admin->note = $this->request->getPost('note');
+        $admin->skill = $this->request->getPost('skill');
         if($admin->update()){
             $this->flashSession->success("Profile telah berhasil diupdate"); 
             $this->response->redirect('/admin/lihat-profil'); 
-        }
-       
+        }       
     }
 
     public function listKaryawanAction(){
@@ -88,6 +89,8 @@ class AdminController extends Controller
         $karyawan->nama = $this->request->getPost('nama');
         $karyawan->usia = $this->request->getPost('usia');
         $karyawan->alamat = $this->request->getPost('alamat');
+        $karyawan->skill = $this->request->getPost('skill');
+        $karyawan->note = $this->request->getPost('note');
         if($karyawan->update()){
             $this->flashSession->success("Data karyawan telah berhasil diedit");  
             $this->response->redirect('/admin/list-karyawan');
@@ -133,9 +136,20 @@ class AdminController extends Controller
         $data->id_kategori = $this->request->getPost('id_kategori');
         $data->produk = $this->request->getPost('produk');
         $data->stok = $this->request->getPost('stok');
-        if($data->save()){
-            $this->flashSession->success('Produk berhasil ditambahkan');
-            $this->response->redirect('/admin/list-produk');
+        $produk = Produk::findFirst("produk = '$data->produk'");
+        if($produk){
+            $this->flashSession->error("produk sudah tersedia");
+            return $this->response->redirect('/admin/list-produk');
+        }
+        else{
+            if($data->save()){
+                $this->flashSession->success('Produk berhasil ditambahkan');
+                $this->response->redirect('/admin/list-produk');
+            }
+            else{
+                $this->flashSession->error('Produk gagal ditambahkan');
+                $this->response->redirect('/admin/list-produk');
+            }
         }
     }
         
@@ -156,10 +170,17 @@ class AdminController extends Controller
         $produk->id_kategori = $this->request->getPost('id_kategori');
         $produk->produk = $this->request->getPost('produk');
         $produk->stok = $this->request->getPost('stok');
+    
         if($produk->update()){
             $this->flashSession->success("Produk berhasil diedit"); 
             $this->response->redirect('/admin/list-produk');
-        }     
+        } 
+        else{
+            $this->flashSession->error('Produk gagal ditambahkan');
+            $this->response->redirect('/admin/list-produk');
+        }
+        
+            
     }
 
     public function listKategoriAction(){
@@ -177,11 +198,21 @@ class AdminController extends Controller
         $data = new Kategori();
         $data->kategori = $this->request->getPost('kategori');
         $data->deskripsi = $this->request->getPost('deskripsi');
-        if($data->save()){
-            $this->flashSession->success("Kategori berhasil ditambahkan");  
-            $this->response->redirect('/admin/list-kategori');
+        $kategori = Kategori::findFirst("kategori = '$data->kategori'");
+        if($kategori){
+            $this->flashSession->error("Kategori gagal ditambahkan, data sudah tersedia");
+            return $this->response->redirect('/admin/list-kategori');
         }
-        
+        else{
+            if($data->save()){
+                $this->flashSession->success("Kategori berhasil ditambahkan");  
+                $this->response->redirect('/admin/list-kategori');
+            } 
+            else{
+                $this->flashSession->error('Kategori gagal ditambahkan');
+                $this->response->redirect('/admin/list-kategori');
+            }
+        }   
     }
 
     public function listPembelianAction(){

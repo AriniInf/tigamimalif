@@ -27,6 +27,8 @@
                     <th>Usia</th>
                     <th>Email</th>
                     <th>Alamat</th>
+                    <th>Skill</th>
+                    <th>Notes</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -40,6 +42,8 @@
                     <td>{{kar.usia}}</td>
                     <td>{{kar.email}}</td>
                     <td>{{kar.alamat}}</td>
+                    <td>{{kar.skill}}</td>
+                    <td>{{kar.note}}</td>
                     <td> <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit-data{{kar.id}}"><i class="fas fa-pencil-alt">
                     </i> Edit</button>
                         <div class="modal fade" id="edit-data{{kar.id}}">
@@ -88,6 +92,18 @@
                                                     <input type="text" class="form-control" id="alamat" name="alamat" value={{kar.alamat}} required>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-sm-2 control-label">Skills</label>
+                                                <div class="col-lg">
+                                                    <input type="text" class="form-control" id="skill" name="skill" value={{kar.skill}} required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-sm-2 control-label">Notes</label>
+                                                <div class="col-lg">
+                                                    <input type="text" class="form-control" id="note" name="note" value={{kar.note}} required>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="modal-footer justify-content-between">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -113,6 +129,8 @@
                     <th>Usia</th>
                     <th>Email</th>
                     <th>Alamat</th>
+                    <th>Skill</th>
+                    <th>Notes</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>

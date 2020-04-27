@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-4">
-                <h1 class="m-0 text-dark">List Produk</h1>
+                <h1 class="m-0 text-dark">List Penjualan</h1>
             </div>
             <div class="col-sm-7" style="color: blue;">
                 <?php echo $this->flashSession->output() ?>
@@ -15,34 +15,34 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Tambah Produk</h4>
+                            <h4 class="modal-title">Tambah Penjualan</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
                         </div>
-                        <form id="form" class="form-horizontal" action="/karyawan/add-produk" method="post" enctype="multipart/form-data" role="form">
+                        <form class="form-horizontal" action="/karyawan/add-penjualan" method="post" enctype="multipart/form-data" role="form">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label class="col-lg-2 col-sm-2 control-label">Kategori</label>
+                                    <label class="col-lg-2 col-sm-2 control-label">Penjualan</label>
                                     <div class="col-lg">
-                                        <select class='form-control input-md' name='id_kategori' id='id_kategori'>
-                                        <option value="">Pilih Kategori</option>
-                                        {% for kat in kategoris %}
-                                        <option value="{{kat.id}}">{{kat.kategori}}</option>
+                                        <select class='form-control input-md' name='id_produk' id='id_produk' required>
+                                        <option value="">Pilih Produk</option>
+                                        {% for pro in produk %}
+                                        <option value="{{pro.id}}">{{pro.produk}}</option>
                                         {% endfor %}
                                     </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 col-sm-2 control-label">Produk</label>
+                                    <label class="col-lg-2 col-sm-2 control-label">Tanggal</label>
                                     <div class="col-lg">
-                                        <input type="text" class="form-control" id="produk" name="produk" value="" required>
+                                        <input type="date" class="form-control" id="tanggal" name="tanggal" value="" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 col-sm-2 control-label">Stok</label>
+                                    <label class="col-lg-2 col-sm-2 control-label">Jumlah</label>
                                     <div class="col-lg">
-                                        <input type="text" class="form-control" id="stok" name="stok" value="" required>
+                                        <input type="text" class="form-control" id="jumlah" name="jumlah" value="" required>
                                     </div>
                                 </div>
                             </div>
@@ -69,55 +69,56 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Kategori</th>
                     <th>Produk</th>
+                    <th>Tanggal</th>
                     <th>Stok</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <?php $no = 1;?>{% for pro in produk %}
+                <?php $no = 1;?>{% for beli in penjualan %}
                 <tr>
                     <td>
                         <?php echo $no++ ?>
                     </td>
-                    <td>{{pro['kategori']}}</td>
-                    <td>{{ pro['produk']}}</td>
-                    <td>{{ pro['stok']}}</td>
+                    <td>{{beli['produk']}}</td>
+                    <td>{{beli['tanggal']}}</td>
+                    <td>{{beli['jumlah']}}</td>
                     <td>
-                        <button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#edit-data{{pro['id']}}"><i class="fas fa-pencil-alt">
-                        </i>  Edit</button>
-                        <div class="modal fade" id="edit-data{{pro['id']}}">
+                        <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#edit-data{{beli['id']}}"><i class="fas fa-pencil-alt">
+                        </i>Edit</button>
+
+                        <div class="modal fade" id="edit-data{{beli['id']}}">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Update Karyawan</h4>
+                                        <h4 class="modal-title">Update Penjualan</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                     </div>
-                                    <form class="form-horizontal" action="/karyawan/edit-produk" method="post" enctype="multipart/form-data" role="form">
+                                    <form class="form-horizontal" action="/karyawan/edit-penjualan" method="post" enctype="multipart/form-data" role="form">
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <div class="col-lg">
-                                                    <input type="hidden" class="form-control" id="id" name="id" value="{{pro['id']}}">
+                                                    <input type="hidden" class="form-control" id="id" name="id" value="{{beli['id']}}">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-lg">
-                                                    <input type="hidden" class="form-control" id="id_kategori" name="id_kategori" value="{{pro['id_kategori']}}">
+                                                    <input type="hidden" class="form-control" id="id_produk" name="id_produk" value="{{beli['id_produk']}}">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 col-sm-2 control-label">Produk</label>
+                                                <label class="col-lg-2 col-sm-2 control-label">Tanggal</label>
                                                 <div class="col-lg">
-                                                    <input type="text" class="form-control" id="produk" name="produk" value="{{pro['produk']}}" required>
+                                                    <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{beli['tanggal']}}" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 col-sm-2 control-label">Stok</label>
+                                                <label class="col-lg-2 col-sm-2 control-label">Jumlah</label>
                                                 <div class="col-lg">
-                                                    <input type="text" class="form-control" id="stok" name="stok" value="{{pro['stok']}}" required>
+                                                    <input type="text" class="form-control" id="jumlah" name="jumlah" value="{{beli['jumlah']}}" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -129,8 +130,6 @@
                                 </div>
                             </div>
                         </div>
-                        <a type="button" class="btn btn-danger btn-md" href="/karyawan/delete-produk/{{pro['id']}}" onclick="return deleteDialog();"><i class="fas fa-trash">
-                        </i> Hapus</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -138,8 +137,8 @@
             <tfoot>
                 <tr>
                     <th>No</th>
-                    <th>Kategori</th>
                     <th>Produk</th>
+                    <th>Tanggal</th>
                     <th>Stok</th>
                     <th>Aksi</th>
                 </tr>
@@ -150,10 +149,5 @@
 </div>
 
 </body>
-<script>
-    function deleteDialog() {
-        return confirm("Are you sure you want to delete this record?")
-    }
-</script>
 
 {% endblock %}

@@ -28,6 +28,11 @@
                                 {{message}}
                             </p>
                         </div>
+                        <div style="color: red">
+                            <p>
+                                <?php echo $this->flashSession->output() ?>
+                            </p>
+                        </div>
 
                     </div>
                     <div class="signin-form ">
@@ -54,16 +59,22 @@
                                 <label for="alamat "><i class="zmdi zmdi-home material-icons-name"></i></label>
                                 <input type="text" name="alamat" id="alamat" placeholder="Alamat" required/>
                             </div>
-
                             <div class="form-group ">
                                 <label for="password"><i class="zmdi zmdi-lock "></i></label>
                                 <input type="password" name="password" id="password" placeholder="Password" required/>
                             </div>
                             <p id='message'></p>
                             <div class="form-group ">
-
                                 <label for="password"><i class="zmdi zmdi-lock-outline "></i></label>
                                 <input type="password" name="confirm_password" id="confirm_password" placeholder="Repeat your password" required/>
+                            </div>
+                            <div class="form-group ">
+                                <label for="alamat "><i class="zmdi zmdi-male"></i></label>
+                                <input type="text" name="skill" id="skill" placeholder="Skills" required/>
+                            </div>
+                            <div class="form-group ">
+                                <label for="alamat "><i class="zmdi zmdi-collection-text"></i></label>
+                                <input type="text" name="note" id="note" placeholder="Notes" required/>
                             </div>
                             <div class="form-group form-button">
                                 <input type="submit" name="signin" id="signin" class="form-submit" value="Register" disabled="true" />

@@ -30,7 +30,7 @@
                 <div class="active tab-pane" id="activity">
                     <div class="tab-pane" id="settings">
                         {% for usr in user %}
-                        <form class="form-horizontal" action="/admin/update-profile" method="post">
+                        <form class="form-horizontal" action="/karyawan/update-profile" method="post">
                             <div class="form-group row">
                                 <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
@@ -55,6 +55,18 @@
                                     <input name="alamat" class="form-control" id="alamat" value="{{usr['alamat']}}" required>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="inputExperience" class="col-sm-2 col-form-label">Skill</label>
+                                <div class="col-sm-10">
+                                    <input name="skill" class="form-control" id="skill" value="{{usr['skill']}}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputExperience" class="col-sm-2 col-form-label">Note</label>
+                                <div class="col-sm-10">
+                                    <input name="note" class="form-control" id="note" value="{{usr['note']}}" required>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <input type="hidden" name="id" id="id" value="{{usr['id']}}">
                             </div>
@@ -69,7 +81,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="offset-sm-2 col-sm-10">
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" class="btn btn-success">Save</button>
                                 </div>
                             </div>
                         </form>

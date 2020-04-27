@@ -74,6 +74,8 @@ class UserController extends Controller
         $user->password = $this->security->hash($password);
         $user->usia = $this->request->getPost('usia');
         $user->alamat = $this->request->getPost('alamat'); 
+        $user->note = $this->request->getPost('note'); 
+        $user->skill = $this->request->getPost('skill'); 
         $user->flag = '0';
         $nama = Users::findFirst("username = '$user->username'");
         if($nama){
@@ -87,13 +89,6 @@ class UserController extends Controller
                     $keluaran = $keluaran.$message. ' , ';
                     //$this->view->message = $keluaran;
                     $alamat = "/register/?alamat=".$keluaran;
-                    // foreach ($keluaran as $msg)
-                    // {
-                    //     if($msg->getMessage()!=null)
-                    //     {
-                    //         $this->flashSession->error($msg->getMessage());
-                    //     }
-                    // }
                     return $this->response->redirect($alamat);
             }
             else{

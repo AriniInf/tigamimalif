@@ -13,7 +13,7 @@ class Kategori extends Model
     }
 
     public $id;
-    public $nama;
+    public $kategori;
     public $deskripsi;
     
 }

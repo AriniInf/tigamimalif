@@ -55,6 +55,18 @@
                                     <input name="alamat" class="form-control" id="alamat" value="{{ad['alamat']}}" required>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="inputExperience" class="col-sm-2 col-form-label">Skill</label>
+                                <div class="col-sm-10">
+                                    <input name="skill" class="form-control" id="skill" value="{{ad['skill']}}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputExperience" class="col-sm-2 col-form-label">Note</label>
+                                <div class="col-sm-10">
+                                    <input name="note" class="form-control" id="note" value="{{ad['note']}}" required>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <input type="hidden" name="id" id="id" value="{{ad['id']}}">
                             </div>

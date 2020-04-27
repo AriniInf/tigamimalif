@@ -23,7 +23,7 @@
                     <div class="signin-image">
                         <figure><img src="../assets/login/images/3 Mim Alif Transparan.png" alt="sing up image"></figure>
                         <a href="/register" class="signup-image-link">Create an account</a>
-                        <div style="color: yellow;">
+                        <div style="color: rgb(113, 230, 59);">
                             <p>
                                 <?php echo $this->flashSession->output() ?>
                             </p>
